@@ -23,13 +23,17 @@ if st.button("Select"):
     match option:
         case "PPO":
             agent = PPOAgent(4, (6,))
+            pass
         case "SAC":
             agent = SACAgent()
+            pass
         case "A2C":
             agent = DQNAgent(env, 6, 4)
             agent.load_models('dash/target_dqn.keras')
+            pass
         case "DQN":
             agent = A2CAgent(env)
+            pass
 
 if st.button("Reset", type = "primary"):
     obs, _ = env.reset()
@@ -39,13 +43,17 @@ if st.button("Reset", type = "primary"):
     match option:
         case "PPO":
             agent = PPOAgent(4, (6,))
+            pass
         case "SAC":
             agent = SACAgent()
+            pass
         case "A2C":
             agent = DQNAgent(env, 6, 4)
             agent.load_models('dash/target_dqn.keras')
+            pass
         case "DQN":
             agent = A2CAgent(env)
+            pass
 
     st.divider()
     st.write(f"Room Temperature: {env.ROOM_TEMP:.2f}C")
