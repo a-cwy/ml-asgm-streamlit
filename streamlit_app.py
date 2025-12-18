@@ -10,6 +10,7 @@ from a2c import A2CAgent
 
 env = environment.WaterHeaterEnv()
 agent = PPOAgent(4, (6,))
+obs = env.reset()
 total_reward = 0.0
 
 st.header("Water Heater RL Approach")
@@ -26,6 +27,7 @@ if st.button("Select"):
             agent = SACAgent()
         case "A2C":
             agent = DQNAgent(env, 6, 4)
+            agent.load_models('dash/target_dqn.keras')
         case "DQN":
             agent = A2CAgent(env)
 
@@ -41,6 +43,7 @@ if st.button("Reset", type = "primary"):
             agent = SACAgent()
         case "A2C":
             agent = DQNAgent(env, 6, 4)
+            agent.load_models('dash/target_dqn.keras')
         case "DQN":
             agent = A2CAgent(env)
 
@@ -49,7 +52,7 @@ if st.button("Reset", type = "primary"):
     st.write(f"Water Temperature: {env.water_tank_temp:.2f}C")
     st.write(f"Temperature Loss: {env.temp_loss:.2f}C")
 
-if st.button("Step", disabled=st.session_state.get("disabled", True)):
+if st.button("Step", disabled = st.session_state.get("disabled", True)):
     action = agent.get_action(obs)
     next_obs, reward, term, trun, info = env.step(action)
     total_reward = total_reward + reward
