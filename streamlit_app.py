@@ -8,7 +8,7 @@ from dqn import DQNAgent
 from a2c import A2CAgent
 
 env = False
-env = env if env else environment.WaterHeaterEnv()
+env = env if not False else environment.WaterHeaterEnv()
 agent = PPOAgent(4, (6,))
 obs = env._get_obs()
 total_reward = 0.0
