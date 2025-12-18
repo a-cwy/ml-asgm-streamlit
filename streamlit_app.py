@@ -9,7 +9,7 @@ from a2c import A2CAgent
 
 env = environment.WaterHeaterEnv()
 agent = PPOAgent(4, (6,))
-obs, _ = env._get_obs()
+obs = env._get_obs()
 total_reward = 0.0
 print("a")
 
