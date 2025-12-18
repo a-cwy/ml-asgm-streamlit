@@ -71,3 +71,15 @@ class A2CAgent():
             rewards_breakdown.append(list(info["rewards"].values()))
 
         return rewards_breakdown
+    
+
+
+    def get_action(self, obs):
+        state = self._flatten_obs(obs)
+
+        state_t = torch.tensor(state, dtype=torch.float32, device=self.device).unsqueeze(0)
+        with torch.no_grad():
+            probs = self.actor_model(state_t)
+            action = probs.argmax(dim=-1).item()
+
+        return action

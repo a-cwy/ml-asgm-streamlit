@@ -116,7 +116,7 @@ class SACAgent():
         return vec
 
 
-    def choose_action(self, observation, deterministic=False):
+    def get_action(self, observation, deterministic=False):
         """
         Returns an action usable by env.step():
         - For discrete env: returns scalar int (sampled category if deterministic=False,

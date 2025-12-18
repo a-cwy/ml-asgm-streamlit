@@ -104,3 +104,16 @@ class PPOAgent:
         step_rewards = np.array(step_rewards)
         return total_reward, step_rewards
 
+
+
+    def get_action(self, obs):
+        state = self._process_obs(obs)
+        
+        state_t = T.tensor(state, dtype=T.float32).unsqueeze(0).to(self.actor.device)
+
+        # Deterministic action (no exploration)
+        with T.no_grad():
+            dist = self.actor(state_t)
+            action = dist.probs.argmax(dim=-1).item()
+
+        return action

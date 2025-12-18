@@ -53,3 +53,9 @@ class DQNAgent():
             rewards_breakdown.append(list(info["rewards"].values()))
 
         return rewards_breakdown
+    
+
+    def get_action(self, obs):
+        action = self.target_network.predict(self._flatten_obs(obs), verbose = 0)[0].argmax()
+        return action
+
