@@ -16,6 +16,7 @@ if st.button("Run"):
     env = environment.WaterHeaterEnv()
     obs, _ = env.reset()
     total_reward = 0.0
+    reward_hist = []
 
     match option:
         case "PPO":
@@ -38,6 +39,7 @@ if st.button("Run"):
         action = agent.get_action(obs)
         next_obs, reward, _, _, info = env.step(action)
         total_reward = total_reward + reward
+        reward_hist.append(reward)
         obs = next_obs
 
         placeholder.empty()
@@ -58,3 +60,8 @@ if st.button("Run"):
             st.write(f"Step Reward: {reward:.2f}C")
 
     st.write(f"Total Reward for Episode: {total_reward:.2f}")
+    st.divider()
+    st.pyplot().plot(np.cumsum(reward_hist))
+    st.pyplot.xlabel("Step")
+    st.pyplot.ylabel("Reward")
+    st.pyplot.title("Cumulative Reward per Step")
