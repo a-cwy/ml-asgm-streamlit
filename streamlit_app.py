@@ -33,6 +33,8 @@ if st.button("Run"):
 
     done = False
 
+    placeholder = st.empty()
+
     while not done:
         action = agent.get_action(obs)
         next_obs, reward, term, trun, info = env.step(action)
@@ -40,15 +42,18 @@ if st.button("Run"):
         total_reward = total_reward + reward
         obs = next_obs
 
-        st.divider()
-        st.write(f"Room Temperature: {env.ROOM_TEMP:.2f}C")
-        st.write(f"Water Temperature: {env.water_tank_temp:.2f}C")
-        st.write(f"Temperature Change: {env.temp_loss:.2f}C")
-        st.divider()
-        st.write(f"Comfort Reward: {info["rewards"]["comfort"]:.2f}C")
-        st.write(f"Hygiene Reward: {info["rewards"]["hygiene"]:.2f}C")
-        st.write(f"Energy Reward: {info["rewards"]["energy"]:.2f}C")
-        st.write(f"Safety Reward: {info["rewards"]["safety"]:.2f}C")
-        st.write(f"Step Reward: {reward:.2f}C")
+        placeholder.empty()
+        with placeholder.container():
+            st.divider()
+            st.write(f"Room Temperature: {env.ROOM_TEMP:.2f}C")
+            st.write(f"Water Temperature: {env.water_tank_temp:.2f}C")
+            st.write(f"Temperature Change: {env.temp_loss:.2f}C")
+            st.divider()
+            st.write(f"Action: {action}")
+            st.write(f"Comfort Reward: {info["rewards"]["comfort"]:.2f}C")
+            st.write(f"Hygiene Reward: {info["rewards"]["hygiene"]:.2f}C")
+            st.write(f"Energy Reward: {info["rewards"]["energy"]:.2f}C")
+            st.write(f"Safety Reward: {info["rewards"]["safety"]:.2f}C")
+            st.write(f"Step Reward: {reward:.2f}C")
 
     st.write(f"Total Reward for Episode: {total_reward:.2f}")
