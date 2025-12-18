@@ -123,6 +123,7 @@ class SACAgent():
           otherwise argmax index)
         - For continuous env: returns numpy array (sampled if deterministic=False, otherwise mean action)
         """
+        observation = self.flatten_observation(observation)
         state = T.Tensor([observation]).to(self.actor.device)
 
         # For discrete case, actor.sample_normal returns (one_hot, log_prob, indices)

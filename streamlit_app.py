@@ -24,11 +24,11 @@ if st.button("Run"):
         case "SAC":
             agent = SACAgent()
             pass
-        case "A2C":
+        case "DQN":
             agent = DQNAgent(env, 6, 4)
             agent.load_models('dash/target_dqn.keras')
             pass
-        case "DQN":
+        case "A2C":
             agent = A2CAgent(env)
             pass
 
