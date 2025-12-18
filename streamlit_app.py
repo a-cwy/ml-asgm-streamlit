@@ -59,7 +59,7 @@ if st.button("Run"):
             st.write(f"Hygiene Reward: {info["rewards"]["hygiene"]:.2f}")
             st.write(f"Energy Reward: {info["rewards"]["energy"]:.2f}")
             st.write(f"Safety Reward: {info["rewards"]["safety"]:.2f}")
-            st.write(f"Step Reward: {reward:.2f}C")
+            st.write(f"Step Reward: {reward:.2f}")
 
     st.write(f"Total Reward for Episode: {total_reward:.2f}")
     st.divider()
