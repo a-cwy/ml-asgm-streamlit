@@ -1,4 +1,5 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 import environment
 import gymnasium as gym
 import numpy as np
@@ -61,7 +62,9 @@ if st.button("Run"):
 
     st.write(f"Total Reward for Episode: {total_reward:.2f}")
     st.divider()
-    st.pyplot().plot(np.cumsum(reward_hist))
-    st.pyplot.xlabel("Step")
-    st.pyplot.ylabel("Reward")
-    st.pyplot.title("Cumulative Reward per Step")
+    fig, ax = plt.subplots()
+    ax.plot(np.cumsum(reward_hist))
+    ax.set_xlabel("Step")
+    ax.set_ylabel("Reward")
+    ax.set_title("Cumulative Reward per Step")
+    st.pyplot(fig)
