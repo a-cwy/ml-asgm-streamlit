@@ -7,10 +7,9 @@ from sac import SACAgent
 from dqn import DQNAgent
 from a2c import A2CAgent
 
-
 env = environment.WaterHeaterEnv()
 agent = PPOAgent(4, (6,))
-obs = env.reset()
+obs, _ = env.reset()
 total_reward = 0.0
 
 st.header("Water Heater RL Approach")
