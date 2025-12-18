@@ -227,6 +227,7 @@ class WaterHeaterEnv(gym.Env):
         
         if self.elementIsActive:
             self.water_tank_temp = min(self.water_tank_temp + (0.7169658007 * action), 100.0)
+            self.temp_loss += 0.7169658007 * action
 
         # Update cycle for overheat time tracker
         if self.water_tank_temp >= self.STERILIZATION_TEMP:
