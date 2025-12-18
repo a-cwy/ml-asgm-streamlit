@@ -12,6 +12,7 @@ from a2c import A2CAgent
 
 st.header("Water Heater RL Approach")
 option = st.selectbox("Pick model to use", ("PPO", "SAC", "A2C", "DQN"), index = 0, placeholder = "Select model...")
+# season = st.selectbox("Pick season", ("Spring", "Summer", "Autumn", "Winter"), index = 0, placeholder = "Select model...")
 n_steps = st.number_input("Number of steps to run", min_value = 1, max_value = 5000, step = 1)
 if st.button("Run"):
     env = environment.WaterHeaterEnv()
@@ -46,18 +47,18 @@ if st.button("Run"):
         placeholder.empty()
         with placeholder.container():
             st.divider()
-            st.write(f"Day: {env.day:.2f}C")
-            st.write(f"Time: {env.time:.2f}C")
+            st.write(f"Day: {env.day:.2f}")
+            st.write(f"Time: {env.time:.2f}")
             st.write(f"Room Temperature: {env.ROOM_TEMP:.2f}C")
             st.write(f"Water Temperature: {env.water_tank_temp:.2f}C")
             st.write(f"Temperature Change: {env.temp_loss:.2f}C")
             st.divider()
             st.write(f"Step: {step + 1}")
             st.write(f"Action: {action}")
-            st.write(f"Comfort Reward: {info["rewards"]["comfort"]:.2f}C")
-            st.write(f"Hygiene Reward: {info["rewards"]["hygiene"]:.2f}C")
-            st.write(f"Energy Reward: {info["rewards"]["energy"]:.2f}C")
-            st.write(f"Safety Reward: {info["rewards"]["safety"]:.2f}C")
+            st.write(f"Comfort Reward: {info["rewards"]["comfort"]:.2f}")
+            st.write(f"Hygiene Reward: {info["rewards"]["hygiene"]:.2f}")
+            st.write(f"Energy Reward: {info["rewards"]["energy"]:.2f}")
+            st.write(f"Safety Reward: {info["rewards"]["safety"]:.2f}")
             st.write(f"Step Reward: {reward:.2f}C")
 
     st.write(f"Total Reward for Episode: {total_reward:.2f}")
